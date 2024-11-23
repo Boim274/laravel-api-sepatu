@@ -3,10 +3,25 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
 
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+// order
+Route::apiResource('/orders', App\Http\Controllers\Api\OrderController::class);
+
+// role
+Route::apiResource('/roles', App\Http\Controllers\Api\RoleController::class);
+
+// product
+Route::apiResource('/products', App\Http\Controllers\Api\ProductController::class);
+
+// category
+Route::apiResource('/categories', App\Http\Controllers\Api\CategoryController::class);
+
+// user
+Route::apiResource('/users', App\Http\Controllers\Api\UserController::class);
 /**
  * route "/register"
  * @method "POST"
@@ -33,6 +48,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
 
-Route::prefix('user')->group(function () {
-    Route::apiResource('profiles', UserProfileController::class);
-});
+
+
